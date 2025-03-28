@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytical Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .chart-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .chart-button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 250px;
+        }
+        .chart-button img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+        .chart-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Choose a Chart to View</h1>
+    <form method="POST">
+        <div class="chart-buttons">
+            <button type="submit" name="chart_type" value="department_pie" class="chart-button">
+                <img src="{{ url_for('static', filename='icons/department_icon.png') }}" alt="Department Icon"> Employees by Department
+            </button>
+            <button type="submit" name="chart_type" value="histogram" class="chart-button">
+                <img src="{{ url_for('static', filename='icons/histogram_icon.png') }}" alt="Histogram Icon"> Network Traffic Distribution
+            </button>
+            <button type="submit" name="chart_type" value="scatter_plot" class="chart-button">
+                <img src="{{ url_for('static', filename='icons/scatter_icon.png') }}" alt="Scatter Plot Icon"> Anomaly Score vs File Access
+            </button>
+        </div>
+    </form>
+
+    {% if chart %}
+        <h2>Selected Chart:</h2>
+        <center><img src="data:image/png;base64,{{ chart }}" alt="Chart" /></center>
+    {% endif %}
+</body>
+</html>
