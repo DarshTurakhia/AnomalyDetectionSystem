@@ -10,7 +10,9 @@ pipeline {
 
         stage('Lint IaC Code') {
             steps {
+                dir('/usr/share/rubygems-integration/all/gems/vagrant-2.2.19/plugins/providers/docker/hostmachine/Vagrantfile') {
                 sh 'vagrant validate'
+            }
                 sh 'ansible-lint'
             }
         }
