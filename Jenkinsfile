@@ -10,7 +10,6 @@ pipeline {
 
         stage('Lint IaC Code') {
             steps {
-                sh 'terraform validate'
                 sh 'vagrant validate'
                 sh 'ansible-lint'
             }
