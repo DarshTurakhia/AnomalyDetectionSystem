@@ -19,7 +19,9 @@ pipeline {
 
         stage('Provision Infrastructure') {
             steps {
+                dir('/mnt/DevSecOps/') {
                 sh 'vagrant up --provision'
+                }
             }
         }
 
